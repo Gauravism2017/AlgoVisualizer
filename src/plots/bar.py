@@ -7,6 +7,7 @@ from numba import jit, jitclass        # import the decorator
 from numba import int32, float32
 from numba.numpy_support import from_dtype
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 import matplotlib.animation as animation
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
@@ -97,7 +98,7 @@ class AnimatePlot:
             self.mid.append(kwargs.get("mid"))
         else:
             self.mid.append(self.j[-1])
-        print("j {} next {}".format(j, kwargs.get("next")))
+        # print("j {} next {}".format(j, kwargs.get("next")))
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, 
@@ -159,6 +160,24 @@ class AnimatePlot:
             print(k)
             barlist[k].set_color('g')
 
+        if(self._len <= 20):
+            plt.xticks(_pos, self.array[i])
+        # plt.ticklabel_format(style='sci', axis='x', scilimits=(0,384))
+        fmt = FuncFormatter(lambda x, pos: tickformat(x / 2**256))
+        plt.xaxis.set_major_formatter(fmt)
+        plt.xlabel('factor ($s 2^256$)')
+        plt.ylabel('value')
+        plt.title(self.title)
+        return barlist
+
+    def RadixAnimate(self, i):
+        plt.clf()
+        # print(self.next[i])
+        _pos = list(range(1, self._len + 1))
+        barlist = plt.bar(_pos, self.array[i], color = np.random.rand(3,))
+        #print(barlist)
+       
+
         if(self._len <= 10):
             plt.xticks(_pos, self.array[i])
         plt.ylabel('value')
@@ -178,7 +197,10 @@ class AnimatePlot:
         if(self.title == "merge Sort"):
             ani = animation.FuncAnimation(fig, self.mergeAnimate, range(len(self.array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
         # if(self.title == "Quick Sort"):
-    	else:
+        if(self.title == "Radix Sort"):
+            ani = animation.FuncAnimation(fig, self.RadixAnimate, range(len(self.array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
+        
+        else:
             ani = animation.FuncAnimation(fig, self.animate, range(len(self.array)),interval = 500,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
         ani.save(self.title+'.mp4')
