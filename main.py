@@ -9,5 +9,8 @@ from src import generate_data
 from src.algo import quicksort
 #from src.algo import quicksort
 # from src.algo import radix_sort
-import src.graphAlgo.BFS
+# import src.graphAlgo.BFS
 # from src.algo import heapsort
+# import src.graphAlgo.DFS
+from src.graphAlgo import kruskal
+

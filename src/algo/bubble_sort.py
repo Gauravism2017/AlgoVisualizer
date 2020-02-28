@@ -6,7 +6,13 @@ from numba import jit, void, int_, double
 import matplotlib.pyplot as plt
 from pyqtgraph.Qt import QtCore, QtGui
 
+<<<<<<< Updated upstream
 f = open('inp', 'r')
+=======
+generate(kind='list', size = 200)
+
+f = open('input.txt', 'r')
+>>>>>>> Stashed changes
 inp = f.read()
 array = list(map(int, inp.split(',')))
 

@@ -1,44 +1,30 @@
+import copy
 import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
 plt.rcParams["figure.figsize"] = (19.5, 10.5)
+from src.generate_data import generate
+
+generate(kind='matrix', size = 10)
 
 G = nx.DiGraph()
-# BFS traversal
 n = 0
 array = []
-visited_list = []
-def BFS(G, source, pos):
-    # visited = [False]*(len(G.nodes()))
-    visited = [False] * n
-    print(len(visited))
-    queue = []
-    print(len(G.nodes()))
-    queue.append(source)
-    visited_list.append([source])
-    visited[source] = True
-    while queue:
-        curr_node = queue.pop(0)
-        if(len(G[curr_node]) != 0):
-            for i in G[curr_node]: 
-                print(i)
-                # iterates through all the possible vertices adjacent to the curr_node
-                if visited[i] == False:
-                    queue.append(i)
-                    visited[i] = True
-                    visited_list.append(visited_list[-1] + [i])
-                    if(len(array) > 0):
-                        array.append([pos, array[-1][1] + [(curr_node,i)]])
-                    else:
-                        array.append([pos, [[curr_node, i]]])
-                    # nx.draw_networkx_edges(G, pos, edgelist = [(curr_node,i)], width = 2.5, alpha = 0.6, edge_color = 'r')
-                    # plt.show()
-    return
+pos = dict()
+nodes_array = []
+def minEdge(checked):
+    min = 99999
+    for i in [(u, v, edata['length']) for u, v, edata in G.edges(data=True) if 'length' in edata]:
+        # print(i)
+        if(checked[i] == False and i[2] < min):
+            min = i[2]
+            min_edge = i
+    return min_edge
 
 
-# takes input from the file and creates a weighted graph
+
 def CreateGraph():
     global n
     f = open('input.txt')
@@ -51,7 +37,6 @@ def CreateGraph():
             list1.remove('\n')
         except:
             pass
-        # print(list1)
         list1 = list(map(int, list1))
         if(len(list1)!= 0):
             wtMatrix.append(list1)
@@ -61,6 +46,7 @@ def CreateGraph():
         for j in range(n):
             if wtMatrix[i][j] > 0:
                 G.add_edge(i, j, length=wtMatrix[i][j])
+    # sorted(G, key=lambda x: x[-1])
     return G, source
 
 
@@ -76,33 +62,83 @@ def DrawGraph():
         G, pos, edge_labels=edge_labels, label_pos=0.3, font_size=11)
     return pos
 
+
+def root(a, id):
+    while(id[a] != a):
+        a = id[id[a]]
+    return a
+
+def union(a, b, id, level):
+    _a = root(a, id)
+    _b = root(b, id)
+    if(level[_a] < level[_b]):
+        id[_a] = _b
+    elif(level[_a] > level[_b]):
+        id[_b] = _a
+    else:
+        id[_a] = id[_b]
+        level[_b] += 1
+
+def krus(pos):
+    elen = len(G.edges())
+    vlen = len(G.nodes())
+    mst = []
+    checked = dict()
+    for i in [(u, v, edata['length']) for u, v, edata in G.edges(data=True) if 'length' in edata]:
+        checked[i] = 0
+    id = [None] * vlen
+    level = [None] * vlen
+    nodes = set()
+    for i in range(vlen):
+        id[i] = i
+        level[i] = 0
+    while(len(mst) < vlen - 1):
+        curr_edge = minEdge(checked)
+        if(curr_edge is not None):
+            checked[curr_edge] = 1
+            y = root(curr_edge[1], id)
+            x = root(curr_edge[0], id)
+            if(x != y):
+                nodes.add(x)
+                nodes.add(y)
+                temp = copy.deepcopy(nodes)
+                # temp = list(temp)
+                # _temp = copy.deepcopy(temp)
+                nodes_array.append(temp)
+                mst.append(curr_edge)
+                temp = copy.deepcopy(mst)
+                array.append(temp)
+                union(x, y, id, level)
+
 def animate(i):
     # print(i)
     # print(len(visited_list))
     plt.clf()
-    nx.draw(G, array[i][0], with_labels=True)
+    nx.draw(G, pos, with_labels=True)
     edge_labels = dict([((u, v,), d['length'])
                         for u, v, d in G.edges(data=True)])
     nx.draw_networkx_edge_labels(
-        G, array[i][0], edge_labels=edge_labels, label_pos=0.3, font_size=11)
-    if(i >= len(visited_list)):
-        visite = visited_list[-1]
+        G, pos, edge_labels=edge_labels, label_pos=0.3, font_size=11)
+    if(i >= len(nodes_array)):
+        visite = nodes_array[-1]
     else:
-        visite = visited_list[i]
-    nx.draw_networkx_nodes(G,array[i][0],
+        visite = nodes_array[i]
+    nx.draw_networkx_nodes(G,pos,
                        nodelist=visite,
                        node_color='r',
                        node_size=500,
                    alpha=0.8)
-    return nx.draw_networkx_edges(G, array[i][0], array[i][1], width = 2.5, alpha = 0.6, edge_color = 'r')
+
+    return nx.draw_networkx_edges(G, pos, array[i], width = 2.5, alpha = 0.6, edge_color = 'r')
     
+
 
 
 def CreateVideo():
         fig = plt.figure()
         ani = animation.FuncAnimation(fig, animate, range(len(array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
-        ani.save('BFS.mp4')
+        ani.save('Kruskal.mp4')
 # main function
 # if __name__ == "src.graphAlgo.BFS":
 #     _, source = CreateGraph()
@@ -112,8 +148,18 @@ def CreateVideo():
 
 _, source = CreateGraph()
 pos = DrawGraph()
-BFS(G, source, pos)
+krus( pos)
 for i in range(5):
     array.append(array[-1])
-print(array)
+for i in range(5):
+    array.insert(0, array[0])
+for i in range(5):
+    nodes_array.insert(0, nodes_array[0])
 CreateVideo()
+
+
+
+
+
+
+
