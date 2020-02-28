@@ -56,17 +56,22 @@ print(__name__)
 
 if __name__ == 'src.algo.bubble_sort':
     main()
-    p = Plot2D(plot.array)
+
+
+######################################################################################################
+# ################################### FOR PYQTGRAPH RENDERING ############################################    # 
+    # p = Plot2D(plot.array)
    
-    i = 0
-    length = len(plot.array)
-    def update():
-        global p, i
-        p.trace("sin",p.array[i%length])
-        i += 1
+    # i = 0
+    # length = len(plot.array)
+    # def update():
+    #     global p, i
+    #     p.trace("sin",p.array[i%length])
+    #     i += 1
 
-    timer = QtCore.QTimer()
-    timer.timeout.connect(update)
-    timer.start(50)
+    # timer = QtCore.QTimer()
+    # timer.timeout.connect(update)
+    # timer.start(50)
 
-    p.start()
+    # p.start()
+
