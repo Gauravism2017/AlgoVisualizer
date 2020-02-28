@@ -5,7 +5,11 @@ from numba import jit, void, int_, double
 import matplotlib.pyplot as plt
 from pyqtgraph.Qt import QtCore, QtGui
 
-f = open('inp', 'r')
+from src.generate_data import generate
+
+generate(kind='list', size = 20)
+
+f = open('input.txt', 'r')
 inp = f.read()
 array = list(map(int, inp.split(',')))
 
@@ -42,4 +46,5 @@ heapsort()
 for i in range(5):
     plot.update(array, 0, 0)
 print(array)
+
 plot.CreateVideo()

@@ -1,9 +1,11 @@
 import time
 from src.plots.bar import AnimatePlot
 from src.generate_data import generate
+
 import matplotlib.pyplot as plt
 
 generate(kind='list', size = 10)
+
 
 f = open('input.txt', 'r')
 inp = f.read()

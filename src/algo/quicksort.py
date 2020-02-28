@@ -7,8 +7,11 @@ from src.plots.qt import Plot2D
 from numba import jit, void, int_, double
 import matplotlib.pyplot as plt
 from pyqtgraph.Qt import QtCore, QtGui
+from src.generate_data import generate
 
-f = open('inp', 'r')
+generate(kind='list', size = 20)
+
+f = open('input.txt', 'r')
 inp = f.read()
 array = list(map(int, inp.split(',')))
 
@@ -37,8 +40,8 @@ def partition(start, end):
     return high + 1
 
 def random_partion(start, end):
-    print(start)
-    print(end)
+    # print(start)
+    # print(end)
     rand  = start + int(random.random()) % (end - start + 1)
     array[rand], array[start] = array[start], array[rand]
     return partition(start, end)
@@ -52,5 +55,5 @@ def quickSort(start = 0, end = _len - 1):
 quickSort()
 for i in range(5):
     plot.update(array, 0, 0)
-print(array)
+# print(array)
 plot.CreateVideo()
