@@ -5,7 +5,10 @@
 #from src.algo import merge_sort
 #import src.plots.convert2Video
 from src import generate_data
-from src.algo import merge_sort
+# from src.algo import merge_sort
+from src.algo import quicksort
 #from src.algo import quicksort
 # from src.algo import radix_sort
-#import src.graphAlgo.graph
+import src.graphAlgo.BFS
+# from src.algo import heapsort
+
