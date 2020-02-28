@@ -1,7 +1,10 @@
 import time
 from src.plots.bar import AnimatePlot
+from src.generate_data import generate
 
-f = open('inp', 'r')
+generate(kind='list', size = 20)
+
+f = open('input.txt', 'r')
 inp = f.read()
 array = list(map(int, inp.split(',')))
 

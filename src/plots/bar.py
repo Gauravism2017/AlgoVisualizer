@@ -47,7 +47,7 @@ class Plot:
         fig = plt.figure()
         _pos = list(range(1, self._len + 1))
         barlist = plt.bar(_pos, self.array, color = 'blue')
-        print(barlist)
+        # print(barlist)
         if(first != 1 and last != 1):
             barlist[self.j].set_color('r')
             barlist[self.next].set_color('g')
@@ -157,15 +157,15 @@ class AnimatePlot:
         plt.clf()
         # print(self.next[i])
         _pos = list(range(1, self._len + 1))
-        barlist = plt.bar(_pos, self.array[i], color = 'blue')
+        barlist = plt.bar(_pos, self.array[i], color = 'b')
         #print(barlist)
        
-        for k in range(self.j[i], self.mid[i] + 1):
-            barlist[k].set_color('r')
-            #barlist[self.next[i]].set_color('g')
+        # for k in range(self.j[i], self.mid[i] + 1):
+        #     barlist[k].set_color('r')
+        #     #barlist[self.next[i]].set_color('g')
 
-        for k in range(self.mid[i] + 1, self.next[i]):
-            barlist[k].set_color('g')
+        # for k in range(self.mid[i] + 1, self.next[i]):
+        #     barlist[k].set_color('g')
 
         if(self._len <= 20):
             plt.xticks(_pos, self.array[i])
@@ -192,9 +192,10 @@ class AnimatePlot:
         if(self._len <= 20):
             plt.xticks(_pos, self.array[i])
         # plt.ticklabel_format(axis="x", style="sci", scilimits=(0,0))
-        scientific_formatter = FuncFormatter(self.scientific)
-        ax = plt.gca()
-        ax.xaxis.set_major_formatter(scientific_formatter)
+        # scientific_formatter = FuncFormatter(self.scientific)
+        # ax = plt.gca()
+        # ax.xaxis.set_major_formatter(scientific_formatter)
+        plt.xticks(rotation=90)
         plt.ylabel('value')
         plt.title(self.title)
         return barlist
@@ -207,7 +208,7 @@ class AnimatePlot:
 
 
     def CreateVideo(self):
-        print(self.title=="merge Sort")
+        # print(self.title=="merge Sort")
         # _createVideo(self.animate, len(self.array))
         fig = plt.figure()
         if(self.title == "merge Sort"):

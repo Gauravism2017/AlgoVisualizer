@@ -4,6 +4,9 @@ import matplotlib.animation as animation
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
 plt.rcParams["figure.figsize"] = (19.5, 10.5)
+from src.generate_data import generate
+
+generate(kind='matrix', size = 20)
 
 G = nx.DiGraph()
 # BFS traversal
@@ -13,9 +16,9 @@ visited_list = []
 def BFS(G, source, pos):
     # visited = [False]*(len(G.nodes()))
     visited = [False] * n
-    print(len(visited))
+    # print(len(visited))
     queue = []
-    print(len(G.nodes()))
+    # print(len(G.nodes()))
     queue.append(source)
     visited_list.append([source])
     visited[source] = True
@@ -23,7 +26,7 @@ def BFS(G, source, pos):
         curr_node = queue.pop(0)
         if(len(G[curr_node]) != 0):
             for i in G[curr_node]: 
-                print(i)
+                # print(i)
                 # iterates through all the possible vertices adjacent to the curr_node
                 if visited[i] == False:
                     queue.append(i)
@@ -115,5 +118,5 @@ pos = DrawGraph()
 BFS(G, source, pos)
 for i in range(5):
     array.append(array[-1])
-print(array)
+# print(array)
 CreateVideo()

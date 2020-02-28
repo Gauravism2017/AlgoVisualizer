@@ -1,28 +1,25 @@
 
 import time
-from src.plots.bar import Plot
-#array = list(map(int, input().split()))
+from src.plots.bar import AnimatePlot
+from src.generate_data import generate
 
+generate(kind='list', size = 20)
 
-
-
-##  READ INPUT
-f = open('inp', 'r')
+f = open('input.txt', 'r')
 inp = f.read()
 array = list(map(int, inp.split(',')))
 
-plot = Plot(array, 0, 0, "bubble_Sort")
-plot._plot(1, 0)
-
-k = 1
+plot = AnimatePlot("insertion_sort_Sort")
+plot.update(array, 0, 0)
 _len = len(array)
+plot._len = _len
+k =  1
 
 for i in range(1, len(array)):
     key = array[i]
     j = i - 1
     while(j >= 0 and array[j] > key):
         plot.update(array, j, k, next=j+1)
-        plot._plot()
         array[j + 1], array[j] = array[j], array[j + 1]
         #print(array)
         j -= 1
@@ -30,4 +27,4 @@ for i in range(1, len(array)):
         
     array[j + 1] = key
 plot.update(array, j, k, next=j+1)
-plot._plot(0, 1)
+plot.CreateVideo()
