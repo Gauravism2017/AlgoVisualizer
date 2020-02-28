@@ -2,7 +2,10 @@ import time
 from src.plots.bar import AnimatePlot
 from src.generate_data import generate
 
-generate(kind='list', size = 20)
+import matplotlib.pyplot as plt
+
+generate(kind='list', size = 10)
+
 
 f = open('input.txt', 'r')
 inp = f.read()
@@ -36,3 +39,4 @@ def main():
 
 if __name__ == 'src.algo.selection_sort':
     main()
+    # plt.show(block=True)

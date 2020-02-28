@@ -7,6 +7,12 @@ import matplotlib.pyplot as plt
 from pyqtgraph.Qt import QtCore, QtGui
 from src.generate_data import generate
 
+
+
+generate(kind='list', size = 200)
+
+f = open('input.txt', 'r')
+
 generate(kind='list', size = 20)
 
 f = open('input.txt', 'r')
