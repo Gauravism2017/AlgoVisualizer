@@ -68,20 +68,19 @@ def test_heap():
     except:
         assert False
 
-def test_data_generator():
-    try:
-        from src import generate_data
-        assert True
-    except:
-        assert False
+# def test_data_generator():
+#     try:
+#         from src import generate_data
+#         assert True
+#     except:
+#         assert False
 
-def test_data_generator():
-    try:
-        from src import generate_data
-        assert True
-    except:
-        assert False
+# def test_data_generator():
+#     try:
+#         from src import generate_data
+#         assert True
+#     except:
+#         assert False
 
 print('done')
-
 
