@@ -127,6 +127,7 @@ class AnimatePlot:
 
 ###################################################################
 
+
     def scientific(self, x, pos):
         return '%.1E' % x
 
@@ -139,8 +140,13 @@ class AnimatePlot:
         if(i != 0 and i <= len(self.array) - 5):
             barlist[self.j[i]].set_color('r')
             barlist[self.next[i]].set_color('g')
-        if(self._len <= 10):
-            plt.xticks(_pos, self.array[i])
+        if(self._len <= 50):
+            plt.xticks(ticks=_pos, labels=self.array[i])
+            # print(self.array[i])
+        scientific_formatter = FuncFormatter(self.scientific)
+        ax = plt.gca()
+        ax.xaxis.set_major_formatter(scientific_formatter)
+        plt.xticks(rotation=90)
         plt.ylabel('value')
         plt.title(self.title)
         return barlist
