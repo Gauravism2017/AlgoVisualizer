@@ -323,3 +323,6 @@ __pycache__/
 *.ZEREF
 *.csv
 *.c
+*.mp4
+*.avi
+/.github/main.workflow

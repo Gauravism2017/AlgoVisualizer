@@ -82,4 +82,6 @@ def test_data_generator():
     except:
         assert False
 
+print('done')
+
 
