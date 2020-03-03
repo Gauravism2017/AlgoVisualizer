@@ -99,6 +99,7 @@ def animate(i):
                        node_color='r',
                        node_size=500,
                    alpha=0.8)
+    print(array[i][1])
     return nx.draw_networkx_edges(G, array[i][0], array[i][1], width = 2.5, alpha = 0.6, edge_color = 'r')
     
 

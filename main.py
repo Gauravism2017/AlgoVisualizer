@@ -13,6 +13,7 @@
 # import src.graphAlgo.BFS
 # from src.algo import heapsort
 # import src.graphAlgo.DFS
-from src.graphAlgo import kruskal
+# from src.graphAlgo import kruskal
+from src.graphAlgo import toposort
 
 
