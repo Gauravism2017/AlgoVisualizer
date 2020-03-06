@@ -160,12 +160,12 @@ class AnimatePlot:
         barlist = plt.bar(_pos, self.array[i], color = 'b')
         #print(barlist)
        
-        # for k in range(self.j[i], self.mid[i] + 1):
-        #     barlist[k].set_color('r')
-        #     #barlist[self.next[i]].set_color('g')
+        for k in range(self.j[i], self.mid[i] + 1):
+            barlist[k].set_color('r')
+            #barlist[self.next[i]].set_color('g')
 
-        # for k in range(self.mid[i] + 1, self.next[i]):
-        #     barlist[k].set_color('g')
+        for k in range(self.mid[i] + 1, self.next[i]):
+            barlist[k].set_color('g')
 
         if(self._len <= 20):
             plt.xticks(_pos, self.array[i])

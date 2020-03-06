@@ -7,7 +7,7 @@ plt.rcParams['figure.max_open_warning'] = 2000
 plt.rcParams["figure.figsize"] = (19.5, 10.5)
 from src.generate_data import generate
 
-generate(kind='matrix', size = 10)
+generate(kind='matrix', size = 10, density = 0.4)
 
 G = nx.DiGraph()
 n = 0
@@ -125,7 +125,7 @@ def animate(i):
         visite = nodes_array[i]
     nx.draw_networkx_nodes(G,pos,
                        nodelist=visite,
-                       node_color='r',
+                       node_color='g',
                        node_size=500,
                    alpha=0.8)
 

@@ -26,6 +26,7 @@ def merge(start, mid, end):
     q = mid + 1
     temp = []
     k = 0
+    plot.update(array, j, plot.k[-1] + 1, next=next, mid=_mid) 
     for i in range(start, end + 1):
         k += 1
         if(p > mid):
@@ -46,7 +47,7 @@ def merge(start, mid, end):
         array[start] = temp[i]
         start += 1   
 
-    plot.update(array, j, plot.k[-1] + 1, next=next, mid=_mid) 
+    # plot.update(array, j, plot.k[-1] + 1, next=next, mid=_mid) 
 
 
 

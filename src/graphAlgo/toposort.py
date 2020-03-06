@@ -177,5 +177,6 @@ for i in range(1, len(li) - 1):
 for i in range(5):
     _li.append(_li[-1])
     array.append(array[-1])
+print(_li)
 CreateVideo()
 

@@ -17,7 +17,10 @@ def generate(kind='list', **kwargs):
     # generate a matrix:
     if(kind == 'matrix'):
         # li = [[random.getrandbits(8) for i in range(n)] for i in range(n)]
-        li =  rand(n, n, density=min(((0.6*10)/n), 0.1*n)).todense()*5
+        if "density" in kwargs:
+            li =  rand(n, n, density=kwargs.get("density")).todense()*5
+        else:
+            li =  rand(n, n, density=min(((0.6*10)/n), 0.1*n)).todense()*5
         li = li.astype(int)
         print(n)
         np.savetxt(f, X = li, fmt='%d')
