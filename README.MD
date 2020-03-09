@@ -7,18 +7,18 @@
     * <h3> Searching </h3>
 
         * <h3> BFS </h3>
-            ![](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/BFS.gif)
+        ![](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/BFS.gif)
 
         * <h3> DFS </h3>
-            ![](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/DFS.gif)
+        ![](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/DFS.gif)
 
     * <h3> Minimum Spanning Tree </h3>
 
         * <h3> Prims </h3>
-            ![BFS](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/prims.gif)
+        ![BFS](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/prims.gif)
 
         * <h3> Kruskal </h3>
-            ![BFS](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/kruskal.gif)
+        ![BFS](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/kruskal.gif)
 
 * <h2> Sorting Algorithms </h2>
 
