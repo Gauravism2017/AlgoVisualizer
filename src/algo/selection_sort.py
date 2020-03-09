@@ -11,7 +11,7 @@ f = open('input.txt', 'r')
 inp = f.read()
 array = list(map(int, inp.split(',')))
 
-plot = AnimatePlot("bubble_Sort")
+plot = AnimatePlot("selection_Sort")
 plot.update(array, 0, 0)
 _len = len(array)
 plot._len = _len

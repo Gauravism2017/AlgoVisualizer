@@ -231,7 +231,7 @@ class AnimatePlot:
         else:
             ani = animation.FuncAnimation(fig, self.animate, range(len(self.array)),interval = 200,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
-        ani.save(self.title+'.gif', writer='pillow')
+        ani.save('saves/gif/' + self.title+'.gif', writer='pillow')
         # ani.save(self.title+'.mp4', writer=FFwriter)
 
 

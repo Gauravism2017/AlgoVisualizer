@@ -1,10 +1,8 @@
 import sys
 import time
 from src.plots.bar import AnimatePlot
-from src.plots.qt import Plot2D
-from numba import jit, void, int_, double
 import matplotlib.pyplot as plt
-from pyqtgraph.Qt import QtCore, QtGui
+
 from src.generate_data import generate
 
 
@@ -44,11 +42,11 @@ def main():
     # f = open('data.json','w')
     # temp = sys.stdout
     # sys.stdout = f
-    # print(plot.toJSON())
+    # # print(plot.toJSON())
     # sys.stdout = temp
     # f.close()
-    #plot.CreateVideo()
-    #print(plot.array)
+    plot.CreateVideo()
+    print(plot.array)
     
     print("time taken in creating video {}".format(time.time() - t))
 

@@ -108,7 +108,7 @@ def CreateVideo():
         fig = plt.figure()
         ani = animation.FuncAnimation(fig, animate, range(len(array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
-        ani.save('BFS.gif', writer='Pillow')
+        ani.save('saves/gif/' + 'BFS.gif', writer='Pillow')
 
 # main function
 # if __name__ == "src.graphAlgo.BFS":
