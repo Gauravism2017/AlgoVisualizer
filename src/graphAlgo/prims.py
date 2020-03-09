@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
-plt.rcParams["figure.figsize"] = (19.5, 10.5)
-# plt.rcParams["figure.figsize"] = (6.5, 3.5)
+# plt.rcParams["figure.figsize"] = (19.5, 10.5)
+plt.rcParams["figure.figsize"] = (6.5, 3.5)
 from src.generate_data import generate
 
 generate(kind='matrix', size = 10)
