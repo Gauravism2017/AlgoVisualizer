@@ -2,4 +2,4 @@
 
 <h2> Algo Visualizer</h2>
 
-![Merge Sort](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/merge%20Sort.mp4)
+![BFS](https://github.com/Gauravism2017/AlgoVisualizer/blob/master/saves/gif/BFS.gif)

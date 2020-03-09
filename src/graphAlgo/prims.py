@@ -6,6 +6,7 @@ import matplotlib.animation as animation
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
 plt.rcParams["figure.figsize"] = (19.5, 10.5)
+# plt.rcParams["figure.figsize"] = (6.5, 3.5)
 from src.generate_data import generate
 
 generate(kind='matrix', size = 10)
@@ -118,7 +119,7 @@ def animate(i):
                        node_size=500,
                    alpha=0.8)
 
-    return nx.draw_networkx_edges(G, pos, array[i], width = 2.5, alpha = 0.6, edge_color = 'g')
+    return nx.draw_networkx_edges(G, pos, array[i], width = 5, alpha = 0.6, edge_color = 'g')
     
 
 
@@ -127,7 +128,7 @@ def CreateVideo():
         fig = plt.figure()
         ani = animation.FuncAnimation(fig, animate, range(len(array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
-        ani.save('Prims.mp4')
+        ani.save('prims.gif', writer='Pillow')
 
 _, source = CreateGraph()
 pos = DrawGraph()

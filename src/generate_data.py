@@ -11,7 +11,7 @@ def generate(kind='list', **kwargs):
     sys.stdout = f
     n = kwargs.get('size')
     if(kind=='list'):
-        li = [random.getrandbits(32) for i in range(n)]
+        li = [random.getrandbits(8) for i in range(n)]
         li = str(li)[1:-1]
         print(li)
     # generate a matrix:

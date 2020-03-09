@@ -4,7 +4,7 @@ from src.generate_data import generate
 
 import matplotlib.pyplot as plt
 
-generate(kind='list', size = 10)
+generate(kind='list', size = 30)
 
 
 f = open('input.txt', 'r')

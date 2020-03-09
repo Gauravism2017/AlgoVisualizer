@@ -6,6 +6,7 @@ import matplotlib.animation as animation
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
 plt.rcParams["figure.figsize"] = (19.5, 10.5)
+# plt.rcParams["figure.figsize"] = (6.5, 3.5)
 import copy
 
 generate(kind='matrix', size=20)
@@ -159,7 +160,7 @@ def CreateVideo():
         print(2)
         ani = animation.FuncAnimation(fig, animate, range(len(_li)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
-        ani.save('Topo.mp4')
+        ani.save('Topo.gif', writer='Pillow')
 
 
 

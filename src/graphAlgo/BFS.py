@@ -4,6 +4,7 @@ import matplotlib.animation as animation
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
 plt.rcParams["figure.figsize"] = (19.5, 10.5)
+# plt.rcParams["figure.figsize"] = (6.5, 3.5)
 
 from src.generate_data import generate
 
@@ -78,7 +79,7 @@ def DrawGraph():
                         for u, v, d in G.edges(data=True)])
     # prints weight on all the edges
     nx.draw_networkx_edge_labels(
-        G, pos, edge_labels=edge_labels, label_pos=0.3, font_size=11)
+        G, pos, edge_labels=edge_labels, label_pos=0.3, font_size=11, width = 0.5)
     return pos
 
 def animate(i):
@@ -99,7 +100,6 @@ def animate(i):
                        node_color='r',
                        node_size=500,
                    alpha=0.8)
-    print(array[i][1])
     return nx.draw_networkx_edges(G, array[i][0], array[i][1], width = 2.5, alpha = 0.6, edge_color = 'r')
     
 
@@ -108,7 +108,7 @@ def CreateVideo():
         fig = plt.figure()
         ani = animation.FuncAnimation(fig, animate, range(len(array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
-        ani.save('BFS.mp4')
+        ani.save('BFS.gif', writer='Pillow')
 
 # main function
 # if __name__ == "src.graphAlgo.BFS":

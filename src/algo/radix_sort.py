@@ -1,10 +1,7 @@
 
 import time
 from src.plots.bar import AnimatePlot
-from src.plots.qt import Plot2D
-from numba import jit, void, int_, double
 import matplotlib.pyplot as plt
-from pyqtgraph.Qt import QtCore, QtGui
 from src.generate_data import generate
 
 generate(kind='list', size = 20)

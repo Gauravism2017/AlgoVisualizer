@@ -9,9 +9,11 @@ from numba.numpy_support import from_dtype
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 import matplotlib.animation as animation
+import matplotlib.patches as mpatches
 from src.config import SAVE_LOCATION
 plt.rcParams['figure.max_open_warning'] = 2000
-plt.rcParams["figure.figsize"] = (19.5, 10.5)
+# plt.rcParams["figure.figsize"] = (19.5, 10.5)
+plt.rcParams["figure.figsize"] = (6.5, 3.5)
 
 
 # def _plot(array, j, k):
@@ -136,16 +138,21 @@ class AnimatePlot:
         # print(self.next[i])
         _pos = list(range(1, self._len + 1))
         barlist = plt.bar(_pos, self.array[i], color = 'blue')
+        # plt.tight_layout()
+        if(self._len <= 50):
+            plt.xticks(ticks=_pos, labels=self.array[i])
         #print(barlist)
         if(i != 0 and i <= len(self.array) - 5):
             barlist[self.j[i]].set_color('r')
             barlist[self.next[i]].set_color('g')
-        if(self._len <= 50):
-            plt.xticks(ticks=_pos, labels=self.array[i])
+        
             # print(self.array[i])
-        scientific_formatter = FuncFormatter(self.scientific)
-        ax = plt.gca()
-        ax.xaxis.set_major_formatter(scientific_formatter)
+        # scientific_formatter = FuncFormatter(self.scientific)
+        # ax = plt.gca()
+        red_patch = mpatches.Patch(color='red', label='Current')
+        green_patch = mpatches.Patch(color='green', label='next')
+        plt.legend(handles=[red_patch, green_patch])
+        # ax.xaxis.set_major_formatter(scientific_formatter)
         plt.xticks(rotation=90)
         plt.ylabel('value')
         plt.title(self.title)
@@ -173,9 +180,13 @@ class AnimatePlot:
         # fmt = FuncFormatter(lambda x, pos: tickformat(x / 2**256))
         # plt.xaxis.set_major_formatter(fmt)
         # plt.xlabel('factor ($s 2^256$)')
-        scientific_formatter = FuncFormatter(self.scientific)
-        ax = plt.gca()
-        ax.xaxis.set_major_formatter(scientific_formatter)
+        # scientific_formatter = FuncFormatter(self.scientific)
+        # ax = plt.gca()
+        # ax.xaxis.set_major_formatter(scientific_formatter)
+        red_patch = mpatches.Patch(color='red', label='Current')
+        green_patch = mpatches.Patch(color='green', label='next')
+        plt.legend(handles=[red_patch, green_patch])
+        plt.xticks(rotation=90)
         plt.ylabel('value')
         plt.title(self.title)
         return barlist
@@ -212,15 +223,16 @@ class AnimatePlot:
         # _createVideo(self.animate, len(self.array))
         fig = plt.figure()
         if(self.title == "merge Sort"):
-            ani = animation.FuncAnimation(fig, self.mergeAnimate, range(len(self.array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
+            ani = animation.FuncAnimation(fig, self.mergeAnimate, range(len(self.array)),interval = 200,  blit=True, repeat_delay=5000, save_count = 1000)
         # if(self.title == "Quick Sort"):
         elif(self.title == "Radix Sort"):
-            ani = animation.FuncAnimation(fig, self.RadixAnimate, range(len(self.array)),interval = 1000,  blit=True, repeat_delay=5000, save_count = 1000)
+            ani = animation.FuncAnimation(fig, self.RadixAnimate, range(len(self.array)),interval = 200,  blit=True, repeat_delay=5000, save_count = 1000)
         
         else:
-            ani = animation.FuncAnimation(fig, self.animate, range(len(self.array)),interval = 500,  blit=True, repeat_delay=5000, save_count = 1000)
+            ani = animation.FuncAnimation(fig, self.animate, range(len(self.array)),interval = 200,  blit=True, repeat_delay=5000, save_count = 1000)
         FFwriter=animation.FFMpegWriter(fps=1, extra_args=['-vcodec', 'libx264'])
-        ani.save(self.title+'.mp4')
+        ani.save(self.title+'.gif', writer='pillow')
+        # ani.save(self.title+'.mp4', writer=FFwriter)
 
 
 
