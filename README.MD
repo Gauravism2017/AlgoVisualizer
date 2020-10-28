@@ -1,4 +1,5 @@
 ![Python application](https://github.com/Gauravism2017/AlgoVisualizer/workflows/Python%20application/badge.svg)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FGauravism2017%2FAlgoVisualizer&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=true)](https://hits.seeyoufarm.com)
 
 <h2> Algo Visualizer</h2>
 
